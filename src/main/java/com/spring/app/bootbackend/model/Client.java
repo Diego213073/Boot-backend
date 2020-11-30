@@ -21,7 +21,7 @@ import java.time.LocalDate;
 public class Client implements Serializable{
 
     @Id
-    private Long id;
+    private String id;
     private String name;
 
     @Column(name="last_name")
