@@ -29,13 +29,26 @@ public class ClientController {
         return new ResponseEntity<String>("¡Cliente guardado con éxito!", HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<String> updateClient(@RequestBody Client client){
+        clientService.createClient(client);
+        return new ResponseEntity<String>("Cliente actualizado", HttpStatus.OK);
+    }
+
     @GetMapping("{id}")
     public Client findByIdClient(@PathVariable String id) {
         return clientService.findById(id);
     }
 
     @DeleteMapping("{id}")
-    public void deleteByIdClient(@PathVariable String id) {
+    public ResponseEntity<String>  deleteByIdClient(@PathVariable String id) {
         clientService.deleteClient(id);
+        return new ResponseEntity<String>("Cliente eliminado", HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteAllClient() {
+        clientService.deleteAll();
+        return new ResponseEntity<String>("Clientes eliminados", HttpStatus.OK);
     }
 }

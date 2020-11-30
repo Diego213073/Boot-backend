@@ -14,5 +14,7 @@ public interface ClientService {
 
     void deleteClient(String id);
 
+    void deleteAll();
+
 
 }

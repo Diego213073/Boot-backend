@@ -5,12 +5,10 @@ import com.spring.app.bootbackend.repository.CLientRepository;
 import com.spring.app.bootbackend.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 @Service
@@ -38,6 +36,7 @@ public class DefaultClientService implements ClientService {
             cl.setId(UUID.randomUUID().toString());
             cl.setCreateAt(LocalDate.now());
         }
+        cl.setCreateAt(LocalDate.now());
         return cl;
     };
 
@@ -49,5 +48,10 @@ public class DefaultClientService implements ClientService {
     @Override
     public void deleteClient(String id) {
         cLientRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAll() {
+        cLientRepository.deleteAll();
     }
 }
