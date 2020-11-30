@@ -1,7 +1,8 @@
 package com.spring.app.bootbackend.service.internal;
 
+import com.spring.app.bootbackend.exceptions.ClientNoFoundException;
 import com.spring.app.bootbackend.model.Client;
-import com.spring.app.bootbackend.repository.CLientRepository;
+import com.spring.app.bootbackend.repository.ClientRepository;
 import com.spring.app.bootbackend.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,10 @@ import java.util.function.Function;
 @Service
 public class DefaultClientService implements ClientService {
 
-    private final CLientRepository cLientRepository;
+    private final ClientRepository cLientRepository;
 
     @Autowired
-    public DefaultClientService(CLientRepository cLientRepository) {
+    public DefaultClientService(ClientRepository cLientRepository) {
         this.cLientRepository = cLientRepository;
     }
 
@@ -42,7 +43,7 @@ public class DefaultClientService implements ClientService {
 
     @Override
     public Client findById(String id) {
-        return cLientRepository.findById(id).orElseThrow(RuntimeException::new);
+        return cLientRepository.findById(id).orElseThrow(ClientNoFoundException::new);
     }
 
     @Override
