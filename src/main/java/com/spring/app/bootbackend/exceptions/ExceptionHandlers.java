@@ -20,21 +20,21 @@ public class ExceptionHandlers {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ErrorCode exceptionHandlers(Exception e){
-        ErrorCode errorCode = ErrorCode.builder().build();
-        errorCode.setCode(UUID.randomUUID().toString());
-        errorCode.setMessage(e.getMessage());
-        this.errorCode(errorCode,e);
+    public ErrorCode exceptionHandlers(Exception e) {
+        ErrorCode errorCode = ErrorCode.builder()
+                .code(UUID.randomUUID().toString())
+                .message(e.getMessage()).build();
+        this.errorCode(errorCode, e);
         return errorCode;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ClientNoFoundException.class)
-    public ErrorCode clientNoFoundException(Exception e){
-        ErrorCode errorCode = ErrorCode.builder().build();
-        errorCode.setCode(UUID.randomUUID().toString());
-        errorCode.setMessage(e.getMessage());
-        this.errorCode(errorCode,e);
+    public ErrorCode clientNoFoundException(Exception e) {
+        ErrorCode errorCode = ErrorCode.builder()
+                .code(UUID.randomUUID().toString())
+                .message(e.getMessage()).build();
+        this.errorCode(errorCode, e);
         return errorCode;
     }
 }
